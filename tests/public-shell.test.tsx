@@ -1,17 +1,34 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import Home from '../src/app/page';
+import DryerVentCleaningPage from '../src/app/dryer-vent-cleaning/page';
+import ContractorApplyPage from '../src/app/contractors/apply/page';
 import { Button, ButtonLink, Field, Input, Select, Textarea, Checkbox } from '../src/components/ui/primitives';
 
+function assertPrelaunchPublicBoundaries(html: string) {
+  expect(html).not.toMatch(/<form|<input|\$149|href="\/(book|login|admin|api)/);
+}
+
 describe('public shell boundaries', () => {
-  it('renders a prelaunch page without forms, prices, or workflow links', () => {
+  it('renders a prelaunch homepage without forms, prices, or workflow links', () => {
     const html = renderToStaticMarkup(<Home />);
     expect(html).toContain('Booking is not open yet.');
     expect(html).toContain('Scope and pricing coming soon');
-    expect(html).not.toMatch(/<form|<input|\$149|href="\/(book|login|admin|contractor|api)/);
+    assertPrelaunchPublicBoundaries(html);
     expect(html.match(/<h1\b/g)).toHaveLength(1);
     const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]));
     for (const link of html.matchAll(/href="#([^"]+)"/g)) expect(ids.has(link[1])).toBe(true);
+    expect(html).toContain('href="/dryer-vent-cleaning"');
+  });
+
+  it('renders populated public routes from the MVP page map without collecting data', () => {
+    const dryer = renderToStaticMarkup(<DryerVentCleaningPage />);
+    expect(dryer).toContain('Booking is not open yet.');
+    assertPrelaunchPublicBoundaries(dryer);
+
+    const contractors = renderToStaticMarkup(<ContractorApplyPage />);
+    expect(contractors).toContain('Online applications are not open yet');
+    assertPrelaunchPublicBoundaries(contractors);
   });
 
   it('provides an initially collapsed, labeled mobile navigation control', () => {

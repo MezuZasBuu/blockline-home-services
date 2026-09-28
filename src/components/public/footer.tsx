@@ -1,5 +1,6 @@
 import { Brand } from './brand';
 import { Container } from './container';
+import { footerNav } from './site-nav';
 
 export function PublicFooter() {
   return <footer className="site-footer">
@@ -8,9 +9,7 @@ export function PublicFooter() {
         <Brand footer />
         <p>For your home.<br />For your block.</p>
         <nav aria-label="Footer navigation">
-          <a href="#dryer-vent-cleaning">Dryer vent cleaning</a>
-          <a href="#our-approach">Our approach</a>
-          <a href="#philadelphia">Philadelphia</a>
+          {footerNav.map(link => <a key={link.href} href={link.href}>{link.label}</a>)}
         </nav>
       </div>
       <div className="footer-bottom">

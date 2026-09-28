@@ -17,7 +17,25 @@ pnpm build
 pnpm dev
 ```
 
-Copy `.env.example` to `.env.local` and supply a development Supabase project's URL, publishable key, service-role key, and exact application origin. The prelaunch page and local tests work without real service credentials. Do not put privileged values in `NEXT_PUBLIC_*` variables or commit `.env.local`.
+Copy `.env.example` to `.env.local` and supply the Supabase project linked to this repository: URL, publishable key, service-role secret (`sb_secret_` keys use `SUPABASE_SERVICE_ROLE_KEY`), and exact application origin. You may instead keep staging values in `.env.staging.local`; the app loads that file first, then `.env.local` overrides. The prelaunch page and local tests work without real service credentials. Do not put privileged values in `NEXT_PUBLIC_*` variables or commit env files.
+
+Verify API wiring (read-only):
+
+```sh
+pnpm db:verify
+pnpm dev
+# then open http://localhost:3000/api/health/supabase (development only)
+```
+
+Apply hosted migrations with the Session Pooler URL in `SUPABASE_DB_URL` (CLI only, not used by the Next.js server):
+
+```sh
+pnpm db:migration:list
+pnpm db:push:dry-run
+# after reviewing output: node scripts/supabase-db.mjs db push --skip-vault
+```
+
+Optional: `npx supabase login` and `npx supabase link --project-ref YOUR_REF` to associate the CLI with the same project. Migration application for Milestone 1.5 should follow `docs/Milestone_1_5_Staging_Validation.md`.
 
 Run SQL files in `supabase/migrations` in filename order using the Supabase migration owner. Auth roles and `auth.users`, `auth.uid()`, and `auth.jwt()` must already exist (provided by Supabase). Use `supabase/seed.sql` only for development: it creates an inactive service and incomplete draft configuration, never a published price. There are no seeded passwords, staff accounts, real customers, or live payment credentials.
 

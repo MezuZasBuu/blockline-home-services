@@ -1,4 +1,8 @@
 import type { NextConfig } from 'next';
+import { loadAppEnv } from './src/server/load-app-env';
+
+loadAppEnv();
+
 const config: NextConfig = {
   poweredByHeader: false,
   async headers() {

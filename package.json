@@ -10,7 +10,10 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --max-warnings=0",
-    "check": "pnpm test && pnpm typecheck && pnpm lint"
+    "check": "pnpm test && pnpm typecheck && pnpm lint",
+    "db:verify": "node scripts/verify-supabase.mjs",
+    "db:migration:list": "node scripts/supabase-db.mjs migration list",
+    "db:push:dry-run": "node scripts/supabase-db.mjs db push --dry-run --skip-vault"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.0",

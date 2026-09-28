@@ -60,11 +60,11 @@ The field supplies the control ID, `aria-describedby`, `aria-invalid` when neede
 
 The mobile menu is a non-modal disclosure. It exposes `aria-expanded` and `aria-controls`; it closes on Escape, outside pointer interaction, section selection, or switching to a desktop layout. Escape returns focus to the menu button. There is no focus trap or body lock because the navigation is not a modal dialog.
 
-The default layout stacks content for mobile. At 42rem, service/principle/footer layouts gain columns. At 60rem, desktop navigation and the split hero appear. All links lead to existing homepage sections; no booking or account links are exposed.
+The default layout stacks content for mobile. At 42rem, service/principle/footer layouts gain columns. At 60rem, desktop navigation and the split hero appear. Primary navigation links to the public routes in the MVP page map (home, dryer vent cleaning, service area, about/contact, contractor application, privacy, and service terms). No booking or account links are exposed.
 
 ## Content boundaries
 
-The homepage contains a brand introduction, dryer-vent service placeholder, approach statement, Philadelphia neighborhood section, and footer. Pricing, service scope, and launch neighborhoods are explicitly pending. It says booking is not open yet. Public contact details, policy text, and service promises will require approved content in a later milestone; no fake phone number, address, or policy link was inserted.
+The homepage contains a brand introduction, dryer-vent service placeholder, approach statement, Philadelphia neighborhood section, and footer. Dedicated routes carry fuller pre-launch copy for dryer vent cleaning, service area, about/contact, contractor application, privacy, and service terms. Pricing, service scope, and launch neighborhoods remain explicitly pending. The site says booking is not open yet. No fake phone number, street address, or unapproved price was inserted.
 
 The page retains `noindex, nofollow` during development. Existing application security headers and API behavior are unchanged.
 

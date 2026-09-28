@@ -3,12 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Brand } from './brand';
 import { Container } from './container';
-
-const links = [
-  { href: '#dryer-vent-cleaning', label: 'Our first service' },
-  { href: '#our-approach', label: 'The Blockline approach' },
-  { href: '#philadelphia', label: 'Our neighborhood' },
-];
+import { primaryNav } from './site-nav';
 
 export function PublicHeader() {
   const [open, setOpen] = useState(false);
@@ -47,7 +42,7 @@ export function PublicHeader() {
         <span className={`menu-icon${open ? ' menu-icon--open' : ''}`} aria-hidden="true"><span /><span /></span>
       </button>
       <nav id="public-navigation" aria-label="Main navigation" className={`public-nav${open ? ' public-nav--open' : ''}`}>
-        {links.map(link => <a key={link.href} href={link.href} onClick={() => setOpen(false)}>{link.label}</a>)}
+        {primaryNav.map(link => <a key={link.href} href={link.href} onClick={() => setOpen(false)}>{link.label}</a>)}
       </nav>
       <span className="header-location">Philadelphia, PA</span>
     </Container>

@@ -1,13 +1,10 @@
 import Image from 'next/image';
-import { PublicHeader } from '@/components/public/header';
-import { PublicFooter } from '@/components/public/footer';
+import { PublicShell } from '@/components/public/public-shell';
 import { Container, Section } from '@/components/public/container';
 import { ButtonLink, Card } from '@/components/ui/primitives';
 
 export default function Home() {
-  return <div id="top">
-    <a className="skip-link" href="#main-content">Skip to content</a>
-    <PublicHeader />
+  return <PublicShell>
     <main id="main-content" tabIndex={-1}>
       <Container>
         <section className="hero" aria-labelledby="hero-title">
@@ -17,8 +14,8 @@ export default function Home() {
             <p className="hero-intro">Your home has a lot going on. Taking care of it should feel straightforward.</p>
             <p className="hero-description">Meet Blockline. We’re building a simpler way to care for Philadelphia homes, starting with dryer vent cleaning.</p>
             <div className="hero-actions">
-              <ButtonLink href="#dryer-vent-cleaning">Explore our first service <span aria-hidden="true">↗</span></ButtonLink>
-              <a className="text-link" href="#our-approach">Meet Blockline</a>
+              <ButtonLink href="/dryer-vent-cleaning">Explore our first service <span aria-hidden="true">↗</span></ButtonLink>
+              <a className="text-link" href="/about">Meet Blockline</a>
             </div>
             <p className="launch-note">Coming to Philadelphia. Booking is not open yet.</p>
           </div>
@@ -40,6 +37,7 @@ export default function Home() {
             <p>A straightforward service, organized by Blockline from the first conversation to the follow-up.</p>
             <dl className="service-details"><div><dt>Service details</dt><dd>Scope and pricing coming soon</dd></div><div><dt>Availability</dt><dd>Launch neighborhoods to be announced</dd></div></dl>
             <p className="service-card-note">We’ll share the full offer before bookings open.</p>
+            <ButtonLink variant="secondary" href="/dryer-vent-cleaning">Read the service overview <span aria-hidden="true">↗</span></ButtonLink>
           </Card>
         </Container>
       </Section>
@@ -58,10 +56,9 @@ export default function Home() {
       <Section id="philadelphia" className="neighborhood-section" aria-labelledby="neighborhood-title">
         <Container className="neighborhood-layout">
           <p className="eyebrow">03 / Right here in Philadelphia</p>
-          <div><h2 id="neighborhood-title">A city of neighborhoods.<br /><em>A company for your home.</em></h2><p>From the front steps to the everyday routines inside, home is personal. We’re bringing that same neighborhood perspective to home maintenance.</p><p className="neighborhood-note">We’ll announce our first service area before launch.</p><ButtonLink variant="secondary" href="#dryer-vent-cleaning">See what’s coming <span aria-hidden="true">↑</span></ButtonLink></div>
+          <div><h2 id="neighborhood-title">A city of neighborhoods.<br /><em>A company for your home.</em></h2><p>From the front steps to the everyday routines inside, home is personal. We’re bringing that same neighborhood perspective to home maintenance.</p><p className="neighborhood-note">We’ll announce our first service area before launch.</p><ButtonLink variant="secondary" href="/service-area">Service area <span aria-hidden="true">↗</span></ButtonLink></div>
         </Container>
       </Section>
     </main>
-    <PublicFooter />
-  </div>;
+  </PublicShell>;
 }
